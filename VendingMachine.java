@@ -6,10 +6,10 @@ public class VendingMachine {
     public static int runMenu(){
         Scanner keyboard = new Scanner(System.in);
         int choice  ;
-        System.out.println("\nPlease enter your selection:" + "\n 1: Snickers \t 125" + "\n2: Dairy milk \t 130" + "\n3: almond treat \t 150" + "\n4: Pepsi \t 185" + "\n5: Exit ");
+        System.out.println("\nPlease enter your selection:" + "\n 1: Snickers \t 125" + "\n2: Dairy milk \t 130" + "\n3: almond treat \t 150" + "\n4: Pepsi \t 185" + "\n5:   Exit ");
         choice = keyboard.nextInt();
-        if (choice == 5)
-            throw  new RuntimeException("you did not selected any item");
+        if (choice >= 5)
+            throw  new RuntimeException("\n \n you did not selected any item\n\n");
         return choice;
     }
 
@@ -27,8 +27,8 @@ public class VendingMachine {
 
     public static int moneyInserted(int price){
         Scanner keyboard = new Scanner(System.in);
-        int money = 0;
-        System.out.println("Your item costs: " + price + " Please enter the amount of money:");
+        int money ;
+        System.out.println("Your item costs: " + price + " Please insert the  money:");
         money = keyboard.nextInt();
         while (money < price){
             System.out.println("Please insert sufficient funds");
@@ -45,6 +45,7 @@ public class VendingMachine {
         int twentyFive = 0;
         int ten = 0;
         int five = 0;
+        int one = 0;
         while (change >= 1000){
             thousand = thousand + 1;
             change = change - 1000;
@@ -73,8 +74,12 @@ public class VendingMachine {
             five = five + 1;
             change = change - 5;
         }
-        System.out.printf("\nHere's your change:\n %d thousand, %d five_Hundred, %d hundred,  %d fifty, %d twentyFive, %d ten , %d five and %d rupees",
-                thousand, five_Hundred, hundred, fifty, twentyFive, ten, five, change);
+        while (change >= 1){
+            one = one + 1;
+            change = change - 1;
+        }
+        System.out.printf("\nHere's your change:\n %d thousand, %d five_Hundred, %d hundred,  %d fifty, %d twentyFive, %d ten , %d five, %d one and  rupees ",
+                thousand  ,  five_Hundred , hundred , fifty , twentyFive , ten , five , one  , change);
     }
     public static void main(String[] args) {
         int food = runMenu();
